@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const winston = require('winston');
 const bookmarks = require('./bookmarkStore');
+const { v4: uuid } = require('uuid');
+
 
 const app = express();
 
@@ -99,6 +101,34 @@ app.post('/bookmarks', (req, res) => {
         .location(`http://localhost:8000/bookmarks/${id}`)
         .json(bookmark);
 
+});
+
+app.delete('/bookmarks/:id', (req, res) => {
+    const { id } = req.params;
+
+    const bookmarkIndex = bookmarks.findIndex(bookmark => bookmark.id == id);
+
+    if (bookmarkIndex === -1) {
+        logger.error(`Bookmark with id ${id} not found.`);
+        return res
+            .status(404)
+            .send('Not Found');
+    }
+
+    // // remove card from lists
+    // // assume cardIds are not duplicated in the cardsIds array
+    // lists.forEach(list => {
+    //     const cardIds = list.cardIds.filter(cid => cid !== id);
+    //     list.cardIds = cardIds;
+    // });
+
+    bookmarks.splice(bookmarkIndex, 1);
+
+    logger.info(`Card with id ${id} deleted`);
+
+    res
+        .status(204)
+        .end();
 });
 
 app.use(function errorHandler(error, req, res, next) {
