@@ -1,12 +1,12 @@
 const bookmarks = [{
   id: 1,
-  title: 'Task One',
-  content: 'This is card one'
+  title: 'Book One',
+  content: 'This is book one'
 },
 {
   id: 2,
-  header: 'List One',
-  cardIds: [1]
+  title: 'Book Two',
+  content: 'This is book two'
 }];
 
 

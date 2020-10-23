@@ -42,6 +42,7 @@ app.use(function validateBearerToken(req, res, next) {
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello, world!');
@@ -64,6 +65,41 @@ app.get('/bookmarks/:id', (req, res) => {
   res.json(bookmark);
 });
 
+app.post('/bookmarks', (req, res) => {
+    const { title, content } = req.body;
+
+    if (!title) {
+        logger.error(`Title is required`);
+        return res
+            .status(400)
+            .send('Invalid data');
+    }
+
+    if (!content) {
+        logger.error(`Content is required`);
+        return res
+            .status(400)
+            .send('Invalid data');
+    }
+
+    // get an id
+    const id = uuid();
+
+    const bookmark = {
+        id,
+        title,
+        content
+    };
+
+    bookmarks.push(bookmark);
+
+    logger.info(`Bookmark with id ${id} created`);
+    res
+        .status(201)
+        .location(`http://localhost:8000/bookmarks/${id}`)
+        .json(bookmark);
+
+});
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
