@@ -3,9 +3,11 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
-const bookmarkRouter = require('./Bookmarks/bookmarkRoute');
+const bookmarkRoute = require('./bookmark/bookmarkRoute');
 const logger = require('./logger');
 const { NODE_ENV } = require('./config');
+const winston = require('winston');
+const bookmarks = require('./bookmarkStore');
 
 const app = express();
 
@@ -31,7 +33,10 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.use(bookmarkRouter);
+app.use(bookmarkRoute);
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
 
 app.use(function errorHandler(error, req, res, next) {
   let response;

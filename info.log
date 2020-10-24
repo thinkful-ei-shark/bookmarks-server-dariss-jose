@@ -12,6 +12,7 @@
 {"message":"Bookmark with id 2 not found.","level":"error"}
 {"message":"Unauthorized request to path: /bookmarks","level":"error"}
 {"message":"Title is required","level":"error"}
+<<<<<<< HEAD
 {"message":"Bookmark with id 90a5e63a-14e2-44b0-8424-8955507df079 created","level":"info"}
 {"message":"Bookmark with id 3 not found.","level":"error"}
 {"message":"Card with id 1 deleted","level":"info"}
@@ -23,3 +24,5 @@
 {"message":"Bookmark with id ab39faf4-817d-40d9-ac4d-7137a477f990 created","level":"info"}
 {"message":"Card with id 2 deleted","level":"info"}
 {"message":"Bookmark with id 1123a0a2-8f88-49f1-81af-5f747c220760 created","level":"info"}
+=======
+>>>>>>> parent of c6e8da0... added delete path
