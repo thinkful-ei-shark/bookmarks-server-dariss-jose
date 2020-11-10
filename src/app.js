@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
-const bookmarkRouter = require('./Bookmarks/bookmarkRoute');
+const bookmarkRouter = require('./bookmark-router');
 const logger = require('./logger');
 const { NODE_ENV } = require('./config');
 
