@@ -24,3 +24,4 @@
 {"message":"Card with id 2 deleted","level":"info"}
 {"message":"Bookmark with id 1123a0a2-8f88-49f1-81af-5f747c220760 created","level":"info"}
 {"message":"Unauthorized request to path: /","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
